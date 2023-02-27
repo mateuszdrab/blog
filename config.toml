@@ -80,7 +80,7 @@ disqusShortname = ""
 
   # Header configuration
     # your subtitle if you want to use any
-    subtitle = "Hello and welcome to my blog about tech and stuff."
+    subtitle = "My blog about tech and stuff."
 
     # if you want to use libravatar or gravatar for the header image
     avatarEmail = ""

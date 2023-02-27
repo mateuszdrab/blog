@@ -1,5 +1,5 @@
 ---
-title: "Hey and welcome"
+title: "Hello and welcome"
 date: 2023-02-27T09:00:00Z
 draft: false
 ---
