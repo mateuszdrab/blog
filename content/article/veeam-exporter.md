@@ -108,3 +108,5 @@ stringData:
 Some notes about the above setup:
 - Prometheus operator needs to be installed in the cluster.
 - Credentials in the secret need to be granted a role in Veeam Enterprise Manager.
+
+Enjoy!
