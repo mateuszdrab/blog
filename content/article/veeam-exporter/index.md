@@ -7,9 +7,11 @@ draft: false
 
 ![Veeam Exporter dashboard in Grafana](https://github.com/peekjef72/veeam_exporter/raw/master/screenshots/veeam_general_dash.png "Veeam Exporter dashboard in Grafana")
 
-Over the past couple of months I've put a considerable amount of time into deployment of a monitoring infrastructure in my home-lab that would replace Splunk and SCOM. In a way, this setup introduced a new level of monitoring which I did not have before, I've deeply fallen for metrics and the power of Prometheus and pretty much sunk into the Grafana's LGTM ecosystem, quickly implementing Tempo and Loki for a full experience. 
+Over the past couple of months I've put a considerable amount of time into deployment of a monitoring infrastructure in my home-lab that would replace Splunk and SCOM. In a way, this setup introduced a new level of monitoring which I did not have before, I've deeply fallen for metrics and the power of Prometheus and pretty much sunk into the Grafana's LGTM ecosystem, quickly implementing Tempo and Loki for a full experience.
 
-As I've been using Veeam for a long time and I wanted to monitor it in terms of metrics; just to get a simple overview without having to open the console. Previously, I fed the data into Splunk; however, I've decided to decommision it so a new solution was needed.
+As I've been using Veeam for a long time and I wanted to monitor it in terms of metrics; just to get a simple overview without having to open the console. Previously, I fed the data into Splunk; however, I've decided to decommission it so a new solution was needed.
+
+## Researching the ideas
 
 Initially, all research pointed to various InfluxDB based solutions; however, I wanted to stick to Prometheus and utilize an exporter instead. Eventually, I came across [Veeam Exporter](https://github.com/peekjef72/veeam_exporter) which was exactly what I was looking for.
 
@@ -17,8 +19,9 @@ Unfortunately, this exported had a dependency on Veeam Enterprise Manager; which
 
 With the dependencies in place, I noticed there is no container image. For me, this is a must as I wanted to run the exporter in my Kubernetes cluster; therefore, I went ahead and built one myself and published it to Docker Hub for others to consume until an official image is made available. The image is available at [mateuszd/veeam-exporter](https://hub.docker.com/repository/docker/mateuszd/veeam-exporter). A PR contributing the `dockerfile` back to the project is also submitted at [here](https://github.com/peekjef72/veeam_exporter/pull/10).
 
-With this, a quick deployment was created for my cluster as shown below and voila, I've got a nice dashboard with Veeam metrics. 
+## Deployment
 
+With this, a quick deployment was created for my cluster as shown below and voila, I've got a nice dashboard with Veeam metrics.
 
 ```yaml
 apiVersion: apps/v1
@@ -106,6 +109,7 @@ stringData:
 ```
 
 Some notes about the above setup:
+
 - Prometheus operator needs to be installed in the cluster.
 - Credentials in the secret need to be granted a role in Veeam Enterprise Manager.
 
