@@ -5,7 +5,7 @@ tags: ['DNS', 'Zone Transfer', 'Prometheus', 'Service Discovery', 'Grafana', 'Bl
 draft: false
 ---
 # Background story
-Back when I ran SCOM, it was performing a duty of ping testing all the servers in my environment. This was a very useful feature as it allowed me to quickly identify servers that were down or unreachable. The main quirk was that it was only aware of the servers that I manually added and not able to discover things automatically as I didn't have the right setup to leverage the SNMP based discovery.
+Back when I ran SCOM, in addition of Windows machine monitoring and Event Log aggregation, it was performing a duty of ping testing all the servers in my environment. This was a very useful feature as it allowed me to quickly identify servers that were down or unreachable. The main quirk was that it was only aware of the servers that I manually added and not able to discover things automatically as I didn't have the right setup to leverage the SNMP based discovery.
 
 Fast forward, I deployed [Uptime Kuma](https://github.com/louislam/uptime-kuma) after SCOM's decomissioning to allow me to continue being being able to quickly check the status of my environment's most important components. However, similarly to SCOM, it had the same limitation of having to manually add all targets of interest.
 
@@ -79,7 +79,7 @@ With the below Prometheus scrape config, you can ICMP probe each discovered A re
 The above config will scrape the `/probe` endpoint of the Blackbox Exporter and pass the discovered targets as the `target` parameter. The `target_module` parameter is used to specify the module to use for probing, it can be overridden if needed and can even be sourced from a DNS TXT record with the same name as the A record (more on that later). In this case, I'm using the default `icmp` module to perform ICMP pings.
 
 # TXT records for extra metadata
-The script automatically exposes meta fields named `__meta_record_txt_<labelname>` for each discovered record and sources the name and value from the TXT record. The TXT record itself needs to be in a key=value format. Multiple records can be specified by separating them with a colon.
+The script automatically exposes meta fields named `__meta_record_txt_<key>` for each discovered record and sources the name and value from the TXT record. The TXT record itself needs to be in a key=value format. Multiple records can be specified by separating them with a colon.
 
 I utilize those records to override the module, the desired alert severity for the specific target (based on a modifired Prometheus alerting rule) and also to disable monitoring of some targets. 
 
@@ -101,10 +101,10 @@ My Prometheus ping alert rule looks like this and uses the above TXT record to a
 
 # The Grafana Dashboard
 
-For dashboard purposes, I use a heavily modified (reinvented?) version of [this](https://grafana.com/grafana/dashboards/14928-prometheus-blackbox-exporter/) dashboard. Beware that with ICMP, most of the panels don't populate; however, the most important data are there and you can use the new state timeline component to generate really nice uptime overview dashboard.
+For dashboarding purposes, I use a heavily modified (reinvented?) version of [this](https://grafana.com/grafana/dashboards/14928-prometheus-blackbox-exporter/) dashboard. Beware that with ICMP, most of the panels don't populate; however, the most important data (probe success and latency) are there and you can use the new state timeline component to generate really nice uptime overview dashboard.
 
 ![Screenshot of my Grafana dashboard](dashboard.png)
 
 With this in place, you can enjoy the benefits of dynamic discovery of targets and also have the ability to override the module to use for probing and the alert severity for each target. 
 
-It's like Blackbox Exporter on steroids!
+It's like Blackbox Exporter is on steroids!
