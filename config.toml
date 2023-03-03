@@ -14,10 +14,10 @@ enableRobotsTXT = true
 DefaultContentLanguage = "en"
 
 # Enable / Disable Google Analytics statistics for your site
-googleAnalytics = ""
+googleAnalytics = "G-Z33B68YDB5"
 
 # Enable / Disable comments on the articles via Disqus.
-disqusShortname = ""
+disqusShortname = "mateuszdrab-github-io-blog"
 
 [params]
   # Custom CSS / JS modules that will be imported by the template.
