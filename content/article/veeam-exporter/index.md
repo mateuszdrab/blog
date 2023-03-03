@@ -3,6 +3,8 @@ title: "Veeam Exporter for Prometheus"
 date: 2023-02-27T09:54:11Z
 tags: ['Veeam', 'Backup', 'Prometheus', 'Exporter', 'Grafana']
 draft: false
+categories: 
+ - Observability 
 ---
 
 ![Veeam Exporter dashboard in Grafana](https://github.com/peekjef72/veeam_exporter/raw/master/screenshots/veeam_general_dash.png "Veeam Exporter dashboard in Grafana")

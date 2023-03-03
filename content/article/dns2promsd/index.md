@@ -3,6 +3,8 @@ title: "DNS service discovery for Prometheus"
 date: 2023-02-28T15:00:00Z
 tags: ['DNS', 'Zone Transfer', 'Prometheus', 'Service Discovery', 'Grafana', 'Blackbox']
 draft: false
+categories: 
+ - Observability
 ---
 ## Background story
 
