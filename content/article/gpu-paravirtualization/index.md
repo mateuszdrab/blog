@@ -1,6 +1,6 @@
 ---
 title: "GPU para-virtualization in Hyper-V"
-date: 2024-02-02T12:00:00Z
+date: 2025-02-02T15:00:00Z
 tags: ['GPU', 'NVIDIA', 'Hyper-V', 'PCI Passthrough', 'Virtualization', 'Windows']
 draft: false
 categories: 
